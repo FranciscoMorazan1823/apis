@@ -10,9 +10,8 @@ var {
   
   router.get("/", getAll);
   router.get("/:term", getWord);
-  router.post("/", passport.authenticate("jwt", { session: false }), createWord);
-  router.put("/:term",passport.authenticate("jwt", { session: false }), updateWord);
-  router.delete("/:term", passport.authenticate("jwt", { session: false }), deleteWord);
-  
+  router.post("/", createWord);
+  router.put("/:term", updateWord);
+  router.delete("/:term", deleteWord);
   
   module.exports = router;
