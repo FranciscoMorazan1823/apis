@@ -1,7 +1,4 @@
 
-
-
-
 var { createUser } = require("../controllers/user");
 var express = require("express");
 var jwt = require("jsonwebtoken");
@@ -14,6 +11,7 @@ router.post("/login", async (req, res, next) => {
     let { username, password } = req.body; //TODO: Add email 
     let user = await UserModel.findOne({ username });
     if (!user)
+
       return res.status(400).send({
         message: "User not found",
       });

@@ -1,0 +1,23 @@
+version: "2"
+services: 
+    app:
+        container_name: app
+        restart: always
+        environment:
+            - MONGO_URI=mongodb://mongo:27017/dummyDictionary
+            - DEBUG=dummyDictionary:*
+            - JWT_SECRET=Awerqw@#$$WER!@#$$!@%ETWWQR@!!asda123
+        build: .
+        ports: 
+            - "192.168.0.114:3000"
+        links:
+            - mongo
+    mongo:
+        container_name: mongo
+        image: mongo
+        ports:
+            - "27017:27017"
+        command:
+            - "--logpath"
+            - "/var/log/mongodb/mongod.log"
+

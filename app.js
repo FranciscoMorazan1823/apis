@@ -3,12 +3,21 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var helmet = require("helmet");
-var passport = require("passport");
-require("./auth/auth");
-require("./database/config");
+
 var userRouter = require("./routers/user");
-var authRouter = require("./routers/auth")
+var authRouter = require("./routers/auth");
 var wordRouter = require("./routers/word");
+var passport = require("passport");
+
+var errorHandler = require("./utils/errorsHandler");
+
+
+
+
+
+
+require("./database/config");
+require("./auth/auth");
 var app = express();
 
 app.use(logger("dev"));
@@ -22,4 +31,5 @@ app.use(authRouter);
 app.use("/users", passport.authenticate("jwt", { session: false }), userRouter);
 app.use("/users", userRouter);
 app.use("/words", wordRouter);
+app.use(errorHandler);
 module.exports = app;
