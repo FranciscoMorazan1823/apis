@@ -13,9 +13,6 @@ var errorHandler = require("./utils/errorsHandler");
 
 
 
-
-
-
 require("./database/config");
 require("./auth/auth");
 var app = express();
